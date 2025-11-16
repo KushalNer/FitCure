@@ -56,7 +56,6 @@
   <tr><td><b>Backend</b></td><td>Django (Python)</td></tr>
   <tr><td><b>Frontend</b></td><td>HTML, Tailwind CSS</td></tr>
   <tr><td><b>Database</b></td><td>MySQL</td></tr>
-  <tr><td><b>Media Handling</b></td><td>Django Media Storage</td></tr>
   <tr><td><b>Version Control</b></td><td>Git & GitHub</td></tr>
   <tr><td><b>Deployment</b></td><td>PythonAnywhere / Render / Railway</td></tr>
 </table>
