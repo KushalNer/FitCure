@@ -166,7 +166,17 @@ python manage.py runserver
 
 <hr>
 
+<hr>
 
+<h2>🌐 Live Demo</h2>
+
+<p>
+🔗 <a href="https://fitcurenew.pythonanywhere.com/" target="_blank">
+<b>https://moneymate.pythonanywhere.com/</b>
+</a>
+</p>
+
+<hr>
 
 
 <h2>👤 Author</h2>
