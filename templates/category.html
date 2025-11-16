@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+<title>catgory Wise Product</title>
+{% endblock title %}
+{% block body %}
+
+<div class="snap-x overflow-x-auto bg-[#c4c4c4] flex space-x-4 p-3">
+    {% for cat in category %}
+        <div class="snap-start flex-shrink-0">
+            <a href="{% url 'category_product' cat.slug %}" 
+               class="text-[#404f68] hover:underline whitespace-nowrap px-4 py-2 bg-[#f2f2f2] rounded shadow">
+                {{ cat.name }}
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+
+<div class=" w-full  mt-1 ml-4 text-xl text-left font-semibold py-0 ">
+Weight Loss
+</div>
+<div class="snap-x overflow-x-auto bg-gray-100 flex space-x-4 p-3 ">
+    {% for product in products  %}
+        {% if product.category.name == 'Weight Loss' %}
+            <div class="snap-start flex-shrink-0 w-50 sm:w-55 md:w-60">
+                <a href="{% url 'product_page' product.slug %}">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <img src="{{ product.image.url }}" alt="Product Image" class="w-full h-40 object-cover rounded mb-2">
+                        <h3 class="text-lg font-bold text-gray-800">{{ product.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ product.description|truncatechars:50 }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor%}
+</div>
+
+<div class=" w-full  mt-1 ml-4 text-xl text-left font-semibold py-0 ">
+Beauty
+</div>
+<div class="snap-x overflow-x-auto bg-gray-100 flex space-x-4 p-3 ">
+    {% for product in products  %}
+        {% if product.category.name == 'Beauty' %}
+            <div class="snap-start flex-shrink-0 w-50 sm:w-55 md:w-60">
+                <a href="{% url 'product_page' product.slug %}">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <img src="{{ product.image.url }}" alt="Product Image" class="w-full h-40 object-cover rounded mb-2">
+                        <h3 class="text-lg font-bold text-gray-800">{{ product.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ product.description|truncatechars:45 }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor%}
+</div>
+       
+
+<div class=" w-full  mt-1 ml-4 text-xl text-left font-semibold py-0 ">
+Health Supplement
+</div>
+<div class="snap-x overflow-x-auto bg-gray-100 flex space-x-4 p-3 ">
+    {% for product in products  %}
+        {% if product.category.name == 'Health Supplement' %}
+            <div class="snap-start flex-shrink-0 w-50 sm:w-55 md:w-60">
+                <a href="{% url 'product_page' product.slug %}">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <img src="{{ product.image.url }}" alt="Product Image" class="w-full h-40 object-cover rounded mb-2">
+                        <h3 class="text-lg font-bold text-gray-800">{{ product.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ product.description|truncatechars:45 }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor%}
+</div>
+
+<div class=" w-full  mt-1 ml-4 text-xl text-left font-semibold py-0 ">
+Dental Health
+</div>
+<div class="snap-x overflow-x-auto bg-gray-100 flex space-x-4 p-3 ">
+    {% for product in products  %}
+        {% if product.category.name == 'Dental Health' %}
+            <div class="snap-start flex-shrink-0 w-50 sm:w-55 md:w-60">
+                <a href="{% url 'product_page' product.slug %}">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <img src="{{ product.image.url }}" alt="Product Image" class="w-full h-40 object-cover rounded mb-2">
+                        <h3 class="text-lg font-bold text-gray-800">{{ product.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ product.description|truncatechars:45 }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor%}
+</div>
+
+<div class=" w-full  mt-1 ml-4 text-xl text-left font-semibold py-0 ">
+Dietary Supplements
+</div>
+<div class="snap-x overflow-x-auto bg-gray-100 flex space-x-4 p-3 ">
+    {% for product in products  %}
+        {% if product.category.name == 'Dietary Supplements' %}
+            <div class="snap-start flex-shrink-0 w-50 sm:w-55 md:w-60">
+                <a href="{% url 'product_page' product.slug %}">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <img src="{{ product.image.url }}" alt="Product Image" class="w-full h-40 object-cover rounded mb-2">
+                        <h3 class="text-lg font-bold text-gray-800">{{ product.name }}</h3>
+                        <p class="text-sm text-gray-600">{{ product.description|truncatechars:45 }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor%}
+</div>
+{% endblock body %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% load static %}
+
+{% block title %}
+<title>contact</title>
+{% endblock title%}
+{% block body %}
+<div class="bg-gray-100 p-6 h-screen">
+
+  <div class="max-w-xl mx-auto bg-white p-6 rounded shadow-md">
+    <h2 class="text-2xl font-bold mb-4 text-center text-[#404f68]">Contact Us</h2>
+
+ 
+
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div class="mb-4">
+        {{ form.name.label_tag }}<br>
+        {{ form.name }}
+        {{ form.name.errors }}
+      </div>
+
+      <div class="mb-4">
+        {{ form.email.label_tag }}<br>
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+
+      <div class="mb-4">
+        {{ form.message.label_tag }}<br>
+        {{ form.message }}
+        {{ form.message.errors }}
+      </div>
+
+      <button type="submit" class="w-full bg-[#404f68]  hover:bg-[#7a859d] text-white font-bold py-2 px-4 rounded">
+        Send Message
+      </button>
+    </form>
+  </div>
+
+</div>
+{% endblock body %}

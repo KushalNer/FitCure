@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+<title>Wishlist</title>
+{% endblock title %}
+{% block body %}
+
+
+
+<div class="bg-[#c4c4c4] w-full  mt-1  text-2xl text-center font-semibold py-3 ">
+    Your Wishlist Products
+</div>
+<br>
+
+<div class=" bg-gray-100 p-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5  gap-4 px-4">
+    {% for item in wishlist_items %} 
+  {% for product in products %}
+    {% if item.product.name == product.name %}
+        <a href="{% url 'product_page' product.slug %}">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+            <img src="{{ product.image.url }}" alt="Product Image" class="w-full h-40 object-cover rounded mb-2">
+            <h3 class="text-lg font-bold text-gray-800">{{ product.name }}</h3>
+            <p class="text-sm text-gray-600">{{ product.description|truncatechars:45 }}</p>
+            </div>
+        </a>
+    {% endif%}
+  {% endfor %}
+  {% empty %}
+  <p>No items in wishlist.</p>
+  {% endfor %}
+</div>
+
+
+
+
+{% endblock body%}

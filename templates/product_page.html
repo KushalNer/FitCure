@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+<title>{{product.seo_title}}</title>
+{% endblock %}
+{% block seo %}
+<meta name="description" content="{{ product.seo_description }}">
+<meta name="keywords" content="{{ product.name }}, {{ product.category.name }}, health, fitness, {{ product.manufacturer }}">
+
+<meta property="og:title" content="{{ product.name }}">
+<meta property="og:description" content="{{ product.short_description }}">
+<meta property="og:image" content="{{ product.image.url }}">
+<meta property="og:type" content="product">
+<meta property="og:url" content="https://fitcure.pythonanywhere.com/product/{{ product.slug }}/">
+
+
+{% endblock seo %}
+{% block script %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.name }}",
+  "image": "{{ product.image.url }}",
+  "description": "{{ product.short_description }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ product.manufacturer }}"
+  }
+}
+</script>
+{% endblock script%}
+{% block body %}
+
+<!-- Mobile View-->
+  <div class=" md:hidden flex-col mt-6 bg-[#f2f2f2] p-8">
+      <!-- Product Info -->
+      <div class="ml-2 mr-2">
+        <div class="flex justify-between">
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ product.name }}</h1>
+          
+            {% if user.is_authenticated %}
+              {%  if product.id in wishlist_ids  %}
+                  <a href="{% url 'removewishlist' product.id %}" class= text-white px-2 py-1 rounded "> 
+                    <img src="{% static 'redheart.png' %}" alt="remove wishlist" class="h-10 w-10">
+                  </a>
+                {% else %}
+                  <a href="{% url 'addwishlist' product.id %}" class=" text-white px-2 py-1 rounded ">
+                    <img src="{% static 'blackheart.png' %}" alt="add wishlist" class="h-10 w-10">
+                  </a>
+                {% endif %}
+          {% else %}
+                <a href="{% url 'login_account' %}" class=" text-white px-2 py-1 rounded ">
+                  <img src="{% static 'blackheart.png' %}" alt="add wishlist" class="h-10 w-10">
+                </a>
+          {% endif %}
+          
+        </div>
+        <p class="text-sm text-gray-800 mb-4">Category: <span class="font-medium">{{ product.category.name }}</span></p>
+  
+        <p class="text-gray-900 text-lg mb-4">{{ product.short_description }}</p>
+    <!-- Product Image -->
+    <div class="mr-5">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full rounded-xl object-cover shadow-md bg-white py-5">
+    </div>
+    <!-- price-->
+    <div >
+        <p class="text-xl mt-2 text-gray-800"><b>Price Range:</b> {{ product.price }}</p>
+        <p class="text-gray-900  mt-2 text-lg"></p>
+    </div>
+      <!-- Buy Button -->
+      <div class="mt-6">
+        <a href="{{ product.buy_link }}" class="inline-block bg-[#404f68] hover:bg-[#7a859d] text-white font-bold py-2 px-8 text-lg rounded-lg transition">
+          Buy Now
+        </a>
+      </div>
+    </div>
+</div>
+
+<!-- desktop view -->
+<div class="hidden md:flex mt-6 bg-[#f2f2f2] p-8">
+    <!-- Product Image -->
+    <div class="mr-5">
+      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-100 md:w-200 sm:w-200  rounded-xl object-cover shadow-md bg-white py-5">
+    </div>
+
+    <!-- Product Info -->
+  <div class="ml-4 mr-8">
+      <div class="flex justify-between">
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ product.name }}</h1>
+        {% if user.is_authenticated %}
+            {% if product.id in wishlist_ids %}
+              <a href="{% url 'removewishlist' product.id %}" class= text-white px-2 py-1 rounded "> 
+                <img src="{% static 'redheart.png' %}" alt="remove wishlist" class="h-10 w-10">
+              </a>
+            {% else %}
+              <a href="{% url 'addwishlist' product.id %}" class=" text-white px-2 py-1 rounded ">
+                <img src="{% static 'blackheart.png' %}" alt="add wishlist" class="h-10 w-10">
+              </a>
+            {% endif %}
+        {% else %}
+              <a href="{% url 'login_account' %}" class=" text-white px-2 py-1 rounded ">
+                <img src="{% static 'blackheart.png' %}" alt="add wishlist" class="h-10 w-10">
+              </a>
+        {% endif %}
+      </div>
+
+      <p class="text-sm text-gray-800 mb-4">Category: <span class="font-medium">{{ product.category }}</span></p>
+
+      <p class="text-gray-900 text-lg mb-4">{{ product.short_description }}</p>
+       <!-- price-->
+      <div >
+        <p class="text-xl mt-2 text-gray-800"><b>Price Range:</b> {{ product.price }}</p>
+        <p class="text-gray-900  mt-2 text-lg"></p>
+      </div>
+      <!-- Buy Button -->
+      <div class="mt-6">
+          <a href="{{ product.buy_link }}" class="inline-block bg-[#404f68] hover:bg-[#7a859d] text-white font-bold py-2 px-8 text-lg rounded-lg transition">
+            Buy Now
+          </a>
+      </div>
+  </div>
+</div>
+
+<div class="bg-[#f2f2f2] space-y-4">
+  <!-- Description -->
+ <div class="">
+   <h3 class="text-2xl font-bold ml-7 text-gray-800">Full Description</h3>
+   <p class="text-gray-900 px mx-7 mt-2 text-lg">{{ product.description }}</p>
+ </div>
+ <!-- Ingredients -->
+ <div>
+    <h3 class="text-2xl font-bold ml-7 text-gray-800">Ingredients</h3>
+  
+        <ul class="list-disc pl-8 text-gray-600 space-y-1">
+        {% for ingredent in product.ingredients.splitlines %}
+             <li class="text-gray-900 px mx-7 mt-2 text-lg pl-1" >{{ ingredent }}</li>
+        {% endfor %}
+    </ul>
+ </div>
+ <!-- Usage -->
+ <div>
+    <h3 class="text-2xl font-bold ml-7 text-gray-800">Usage</h3>
+    <p class="text-gray-900 px mx-7 mt-2 text-lg">{{ product.usage }}</p>
+ </div>
+  <!-- Benefits -->
+ <div>
+    <h3 class="text-2xl font-bold ml-7 text-gray-800">Benefits</h3>
+
+    <ul class="list-disc pl-8 text-gray-600 space-y-1">
+        {% for benefit in product.benefits.splitlines %}
+             <li class="text-gray-900 px mx-7 mt-2 text-lg pl-1" >{{ benefit }}</li>
+        {% endfor %}
+    </ul>
+ </div>
+ <!-- manufacture -->
+  <div>
+    {% if product.manufacturer %}
+    <h3 class="text-2xl font-bold ml-7 text-gray-800">Manufacture</h3>
+    <p class="text-gray-900 px mx-7 mt-2 text-lg">{{ product.manufacturer }}</p>
+    {% endif %}
+ </div>
+ <!-- Buy Button -->
+      <div class="mt-6 mb-10">
+        <a href="{{ product.buy_link }}" class="text-blue-500 hover:text-red-400 font-bold py-2 px-8 text-lg rounded-lg transition ">
+          Read More...
+        </a>
+      </div>
+      <br>
+</div>
+<div class="h-8 bg-white">
+</div>
+
+
+{% endblock body %}

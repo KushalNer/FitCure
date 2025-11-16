@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+<title>Top {{p_category.name}} Products – FitCure </title>
+{% endblock title %}
+{% block seo %}
+
+<meta name="description" content="Browse the best {{p_category.name}} products including Ayurvedic herbs, multivitamins, and natural supplements. Trusted brands, expert reviews – only on FitCure.">
+<meta name="keywords" content="{{p_category.name}},immunity boosters, health supplements, ayurvedic immunity, immune system, multivitamin, ashwagandha, giloy">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://fitcure.pythonanywhere.com/category/{{p_category.slug}}/">
+
+<meta property="og:title" content="Top {{p_category.name}} Products – FitCure">
+<meta property="og:description" content="Explore highly recommended {{p_category.name}} health products, reviewed and curated by FitCure experts.">
+<!--<meta property="og:image" content="https://fitcure.pythonanywhere.com/static/images/immunity.jpg"> --><!-- Replace with actual category image -->
+<meta property="og:url" content="https://fitcure.pythonanywhere.com/category/{{p_category.slug}}/">
+<meta property="og:type" content="website">
+{% endblock seo %}
+
+{% block script %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Top {{p_category.name}} Products",
+  "description": "Find the best {{p_category.name}} products including Ayurvedic and natural supplements to strengthen your health.",
+  "url": "https://fitcure.pythonanywhere.com/category/{{p_category.slug}}/"
+}
+</script>
+{% endblock script %}
+{% block body %}
+
+<div class="bg-[#c4c4c4] w-full mt-1  text-center font-semibold py-2 ">
+   
+    <h1  class="text-2xl sm:text-2xl md:text-2xl font-bold mb-1">Best {{p_category.name}}  Products</h1>
+    
+</div>
+
+<div class="bg-gray-100 h-screen mt-1 ">
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    {% for product in products %}
+    <a href="{% url 'product_page' product.slug %}">
+        <div class="bg-white p-4 rounded shadow">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-40 w-full object-cover rounded mb-2">
+            <h3 class="text-lg font-semibold">{{ product.name }}</h3>
+            <p class="text-sm text-gray-600">{{ product.short_description|truncatechars:50 }}</p>
+        </div>
+    </a>
+    {% empty %}
+        <p>No products available in this category.</p>
+    {% endfor %}
+</div>
+</div>
+{% endblock body %}

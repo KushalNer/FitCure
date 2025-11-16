@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static tailwind_tags %}
+{% block title %}
+<title>{{user.username}} Profile</title>
+{% endblock title %}
+{% block body %}
+<b class="text-2xl"> Welcome , {{ user_data.fname }} {{ user_data.lname}} </b>
+
+<div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl">
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+    
+    <!-- Profile Image -->
+    <img src="{% static 'defaultuser.jpg' %}" alt="Profile Picture"
+         class="w-32 h-32 rounded-full border-4 border-[#404f68] object-cover">
+
+    <!-- User Info -->
+    <div class="flex-1">
+      <h2 class="text-2xl font-bold text-gray-800">{{ user_data.username }}</h2>
+      <p class="text-gray-600 mt-1">{{ user_data.email }}</p>
+      <p class="text-gray-500 mt-2">Joined on: {{ user_data.date|date:"F d, Y" }}</p>
+
+      <!-- Action Buttons -->
+      <div class="mt-4 space-x-4">
+        <a href="{% url 'logout_account' %}" 
+           class="bg-[#404f68] text-white px-4 py-2 rounded hover:bg-[#2c3650] transition">Edit Profile</a>
+        <a href="{% url 'logout_account' %}" 
+           class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- wishlist produts -->
+
+{% endblock body %}
