@@ -172,7 +172,7 @@ python manage.py runserver
 
 <p>
 🔗 <a href="https://fitcurenew.pythonanywhere.com/" target="_blank">
-<b>https://moneymate.pythonanywhere.com/</b>
+<b>https://fitcurenew.pythonanywhere.com/</b>
 </a>
 </p>
 
