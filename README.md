@@ -134,38 +134,6 @@ python manage.py runserver
 
 <hr>
 
-<h2>🎯 Core Functionalities</h2>
-
-<h3>🔸 Product Model Features</h3>
-<ul>
-  <li>Slug-based product pages</li>
-  <li>Category relationships</li>
-  <li>Detailed product information</li>
-</ul>
-
-<h3>🔸 Category System</h3>
-<ul>
-  <li>Scrollable horizontal design</li>
-  <li>Responsive mobile layout</li>
-</ul>
-
-<h3>🔸 Wishlist Feature</h3>
-<ul>
-  <li>❤️ Red heart → Product added</li>
-  <li>🖤 Black heart → Not in wishlist</li>
-  <li>Unique for each user</li>
-</ul>
-
-<h3>🔸 Contact Form</h3>
-<ul>
-  <li>Name</li>
-  <li>Email</li>
-  <li>Message</li>
-  <li>Stored in MySQL</li>
-</ul>
-
-<hr>
-
 <hr>
 
 <h2>🌐 Live Demo</h2>
